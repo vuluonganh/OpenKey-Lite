@@ -1,63 +1,68 @@
 # OpenKey Lite
 
-Bộ gõ tiếng Việt tối giản cho macOS: chỉ gõ **Telex**, xuất **Unicode dựng sẵn**, nằm gọn trên thanh menu.
-*A minimal Vietnamese input app for macOS: Telex typing, Unicode output, menu bar only.*
+A minimal Vietnamese input app for macOS: **Telex** typing, **Unicode** output, menu bar only.
 
-OpenKey Lite được xây dựng từ **[OpenKey](https://github.com/tuyenvm/OpenKey) của Mai Vũ Tuyên (Tuyen Mai)**. Toàn bộ cơ chế gõ (bộ máy Telex, kiểm tra chính tả, đặt dấu, kỹ thuật gửi phím `Backspace`) là của OpenKey. Bản này chỉ cắt gọn tính năng và giao diện.
-*OpenKey Lite is built on [OpenKey](https://github.com/tuyenvm/OpenKey) by Tuyen Mai. The typing mechanism (Telex engine, spell checking, tone placement and the backspace technique) is OpenKey's; this project only trims features and the interface.*
+OpenKey Lite is built on **[OpenKey](https://github.com/tuyenvm/OpenKey) by Tuyen Mai (Mai Vũ Tuyên)**. The whole typing mechanism (the Telex engine, spell checking, tone placement and the backspace sending technique) is OpenKey's. This project only trims the features and the interface.
 
-## Cách dùng
+## Download
 
-Không có cửa sổ cài đặt. Mọi thứ nằm trong menu trên thanh menu:
+Get the latest version from [Releases](https://github.com/vuluonganh/OpenKey-Lite/releases). Requires macOS 13 or later; runs on Apple Silicon and Intel.
 
-| Mục | Ý nghĩa |
+The app is ad-hoc signed, not notarized by Apple, so macOS blocks the first launch. Go to **System Settings → Privacy & Security** and click **Open Anyway**.
+
+## Usage
+
+There is no settings window. Everything is in the menu bar menu (its labels are in Vietnamese):
+
+| Menu item | What it does |
 | --- | --- |
-| **Gõ tiếng Việt** | Bật/tắt tiếng Việt. Phím tắt hiện bên cạnh (mặc định ⌥Z). Biểu tượng: **V** đặc = tiếng Việt, **E** viền = tiếng Anh. |
-| **Đặt dấu kiểu mới: hoà, uý** | Tắt để đặt dấu kiểu cũ: hòa, úy. |
-| **Giữ nguyên từ không phải tiếng Việt** | Gõ "windows" vẫn ra "windows", không thành "ưindows". |
-| **Kêu bíp khi chuyển chế độ** | Phát tiếng bíp khi đổi tiếng Việt/tiếng Anh bằng phím tắt. |
-| **Mở cùng macOS** | Tự mở OpenKey Lite khi đăng nhập. |
+| **Gõ tiếng Việt** | Turns Vietnamese typing on or off. The switch shortcut is shown next to it (default ⌥Z). The icon shows the mode: solid **V** = Vietnamese, outlined **E** = English. |
+| **Đặt dấu kiểu mới: hoà, uý** | New-style tone placement (hoà, uý). Turn off for the old style (hòa, úy). |
+| **Giữ nguyên từ không phải tiếng Việt** | Keeps words that aren't Vietnamese as typed: "windows" stays "windows" instead of becoming "ưindows". |
+| **Kêu bíp khi chuyển chế độ** | Beeps when the shortcut switches between Vietnamese and English. |
+| **Mở cùng macOS** | Opens OpenKey Lite when you log in. |
+| **Thoát OpenKey Lite** | Quits the app. |
 
-Lần đầu mở, macOS sẽ hỏi quyền điều khiển máy (macOS 27: *Device Control and Data Access*, bản cũ hơn: *Trợ năng*). Bật quyền là gõ được ngay, không cần mở lại ứng dụng.
+On first launch, macOS asks for permission to control the computer (macOS 27: *Device Control and Data Access*; earlier versions: *Accessibility*). Typing starts as soon as you allow it; no relaunch needed.
 
-Nên tắt các bộ gõ tiếng Việt khác khi dùng OpenKey Lite để tránh xung đột.
+Turn off other Vietnamese input apps while using OpenKey Lite to avoid conflicts.
 
-## Khác gì so với OpenKey
+## Differences from OpenKey
 
 | | OpenKey 2.0.4 | OpenKey Lite |
 | --- | --- | --- |
-| Kiểu gõ | Telex, VNI, Simple Telex | Telex |
-| Bảng mã | Unicode, TCVN3, VNI Windows, Unicode tổ hợp, CP 1258 | Unicode dựng sẵn |
-| Giao diện | Bảng điều khiển 4 thẻ, gõ tắt, chuyển mã, giới thiệu | Chỉ menu trên thanh menu |
-| Gõ tắt, chuyển mã, chuyển chế độ thông minh, Quick Telex, tự viết hoa, cập nhật tự động | Có | Không |
-| Nền tảng | macOS, Windows, Linux (đang phát triển) | macOS 13 trở lên |
-| Kích thước ứng dụng | 1.7 MB | khoảng 480 KB |
+| Input methods | Telex, VNI, Simple Telex | Telex |
+| Code tables | Unicode, TCVN3, VNI Windows, Unicode Compound, CP 1258 | Unicode |
+| Interface | 4-tab control panel, macro editor, convert tool, About window | Menu bar menu only |
+| Macros, convert tool, smart switching, Quick Telex, auto-capitalization, auto-update | Yes | No |
+| Platforms | macOS, Windows, Linux (in development) | macOS 13 or later |
+| App size | 1.7 MB | about 480 KB |
 
-## Tự build
+## Building
 
-Yêu cầu: macOS 13 trở lên, Xcode.
+Requires macOS 13 or later and Xcode.
 
-1. Mở `Sources/OpenKey/macOS/OpenKey.xcodeproj`.
-2. Chọn scheme **OpenKey**, bấm **Product → Build** (hoặc **Archive** để có bản phát hành).
+1. Open `Sources/OpenKey/macOS/OpenKey.xcodeproj`.
+2. Choose the **OpenKey** scheme and select **Product → Build** (or **Archive** for a release build).
 
-Hoặc dùng dòng lệnh:
+Or from the command line:
 
 ```
 xcodebuild -project Sources/OpenKey/macOS/OpenKey.xcodeproj -scheme OpenKey -configuration Release build
 ```
 
-Dự án ký ứng dụng kiểu *Sign to Run Locally* (ad-hoc), không cần tài khoản Apple Developer. Mỗi lần build lại, macOS coi đó là ứng dụng mới nên cần cấp lại quyền.
+The project signs the app with *Sign to Run Locally* (ad-hoc), so no Apple Developer account is needed. Each rebuild counts as a new app to macOS, so you need to grant permission again.
 
-## Kiểm thử bộ gõ
+## Tests
 
 ```
 Tests/run.sh
 ```
 
-Chạy các ca kiểm thử Telex và so sánh kết quả với `Tests/golden.txt`. Nếu bạn cố ý thay đổi cách gõ, chạy `Tests/run.sh --update` để cập nhật file này.
+Runs the Telex test cases and compares the engine's output with `Tests/golden.txt`. If you change typing behavior on purpose, run `Tests/run.sh --update` to record the new output.
 
-## Ghi công và giấy phép
+## Credits and license
 
-- Bộ máy gõ và mã nguồn gốc: **OpenKey** © 2019 Mai Vũ Tuyên, https://github.com/tuyenvm/OpenKey. Hãy ủng hộ tác giả gốc tại [trang của OpenKey](https://github.com/tuyenvm/OpenKey).
-- OpenKey Lite là bản sửa đổi của OpenKey 2.0.4 (commit `89c2fd3`), do vuluonganh thực hiện từ tháng 11/2026. Các thay đổi được ghi trong [CHANGELOG.md](CHANGELOG.md).
-- Phát hành theo giấy phép **GNU GPL v3**, giống bản gốc. Xem [LICENSE](LICENSE). Các ghi chú bản quyền gốc trong mã nguồn được giữ nguyên.
+- Typing engine and original source: **OpenKey** © 2019 Tuyen Mai (Mai Vũ Tuyên), https://github.com/tuyenvm/OpenKey. Please support the original author on the [OpenKey page](https://github.com/tuyenvm/OpenKey).
+- OpenKey Lite is a modified version of OpenKey 2.0.4 (commit `89c2fd3`), modified by vuluonganh starting November 2026. The changes are listed in [CHANGELOG.md](CHANGELOG.md).
+- Licensed under the **GNU GPL v3**, like the original. See [LICENSE](LICENSE). The original copyright notices in the source files are kept.
